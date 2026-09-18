@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.card {
+    position: relative;
+
+    width: min(90vw, 1000px);
+    height: min(90vh, 600px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --------------------
+   CLOSED CARD
+-------------------- */
+
+.closed-card {
+    position: absolute;
+
+    height: min(90vh, 600px);
+    aspect-ratio: 16 / 20;
+
+    cursor: pointer;
+    z-index: 2;
+
+    transform-origin: right center;
+}
+
+.closed-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+
+/* --------------------
+   OPEN CARD
+-------------------- */
+
+.open-card {
+    position: absolute;
+
+    width: min(90vw, 1000px);
+    height: min(90vh, 600px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.open-card img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+    object-fit: contain;
+}
+
+
+/* --------------------
+   OPEN STATE
+-------------------- */
+
+.card.open .closed-card {
+    display: none;
+}
+
+.card.open .open-card {
+    opacity: 1;
+    pointer-events: auto;
+
+    animation: little-shake 0.45s ease-out;
+}
+
+
+/* --------------------
+   LITTLE SHAKE
+-------------------- */
+
+@keyframes little-shake {
+
+    0% {
+        transform: scale(0.98) rotate(0deg);
+    }
+
+    20% {
+        transform: scale(1.01) rotate(-1deg);
+    }
+
+    40% {
+        transform: scale(1.01) rotate(1deg);
+    }
+
+    60% {
+        transform: scale(1) rotate(-0.6deg);
+    }
+
+    80% {
+        transform: scale(1) rotate(0.4deg);
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+/* --------------------
+   IMAGE DROP SHADOW
+-------------------- */
+
+.closed-card img,
+.open-card img {
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
+}
+
+/* --------------------
+   MOBILE
+-------------------- */
+
+@media (max-width: 600px) {
+
+    .card {
+        width: 94vw;
+        height: 94vh;
+    }
+
+    .closed-card {
+        height: 85vh;
+    }
+
+    .open-card {
+        width: 94vw;
+        height: 85vh;
+    }
+}
