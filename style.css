@@ -137,23 +137,47 @@ body {
     filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.15));
 }
 
-/* --------------------
-   MOBILE
--------------------- */
-
 @media (max-width: 600px) {
 
     .card {
-        width: 94vw;
-        height: 94vh;
+        width: calc(100vw - 32px);
+        height: calc(100vh - 32px);
     }
 
+    /* First image = half size on mobile */
     .closed-card {
-        height: 85vh;
+        height: calc((100vh - 220px) / 2);
     }
 
+    /* Second image stays normal size */
     .open-card {
-        width: 94vw;
-        height: 85vh;
+        width: calc(100vw - 32px);
+        height: calc(100vh - 64px);
     }
 }
+
+/* -------------------- TITLE CARD PULSE -------------------- */ 
+
+.closed-card { 
+    animation: card-pulse 3s ease-in-out infinite; 
+} 
+
+@keyframes card-pulse { 
+    0%, 100% { transform: scale(1); } 50% { transform: scale(1.025); } 
+}
+
+@keyframes glow {
+    0%,
+    100% {
+        opacity: 0.35;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    50% {
+        opacity: 0.65;
+        transform: translate(-50%, -50%) scale(1.05);
+    }
+}
+
+
+
